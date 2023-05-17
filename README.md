@@ -71,44 +71,50 @@
 
 - 피주문자 회원가입
 
-  - https://localhost:1323/admin/v1/register | POST | CREATE
+  - https://localhost:1323/admin/v01/register | POST | CREATE
+    -> 입력값은 다음과 같다.
+    ID string `json:"id"`
+    Password string `json:"password"`
 
 - 피주문자 로그인
+  -> 입력값은 다음과 같다.
+  ID string `json:"id"`
+  Password string `json:"password"`
 
-  - https://localhost:1323/admin/v1/login | POST | UPDATE
+  - https://localhost:1323/admin/v01/login | POST | UPDATE
 
 - 피 주문자가 메뉴를 등록한다.
 
-  - https://localhost:1323/admin/v1/menu | POST | CREATE
+  - https://localhost:1323/admin/v01/menu/create | POST | CREATE
     입력 값은 사진url(string), 메뉴이름(string), 수량(int), 가격(int), 추천/비추천(true/false)
 
 - 피 주문자가 기존 메뉴를 삭제한다.
 
-  - https://localhost:1323/admin/v1/menu | POST | DELETE
+  - https://localhost:1323/admin/v01/menu/delete | POST | DELETE
     입력값은 메뉴별 아이디다.
 
 - 피주문자의 최신 접수내역을 확인하고 상태를 업데이트한다.
 
-  - https://localhost:1323/admin/v1/menu/status | POST | UPDATE
+  - https://localhost:1323/admin/v01/menu/status | POST | UPDATE
 
 - 피주문자의 최신 접수내역을 확인하고 상태를 가져온다.
-  - https://localhost:1323/admin/v1/menu/status | GET | SELECT
+  - https://localhost:1323/admin/v01/menu/status | GET | SELECT
 
 ### 주문자
 
 - 주문자 회원가입
 
-  - https://localhost:1323/v1/register | POST | CREATE
+  - https://localhost:1323/v01/register | POST | CREATE
     -> 입력값은 아이디, 비번이다.
 
 - 주문자 로그인
 
-  - https://localhost:1323/v1/login | POST | UPDATE
+  - https://localhost:1323/v01/login | POST | UPDATE
     -> 입력값은 아이디, 비번이다.
 
 - 주문자 메뉴 주문
 
-  - https://localhost:1323/v1/login | POST | UPDATE
+  - https://localhost:1323/v01/login | POST | UPDATE
     -> 선택한 메뉴를 주문하기 (선택메뉴 정보와 주문자 정보 + 전화번호, 주소, 메뉴수량, 결제정보(현금,카드,네이버페이,카카오페이?))
     -> 대신 메뉴 추가시 상태가 배달중일 경우 실패, 신규주문으로 전환알림
     -> 메뉴 변경시 상태가 조리중, 배달중일 경우 실패알림  
@@ -116,67 +122,66 @@
 
 - 주문자가 특정 메뉴를 추천한다.
 
-  - https://localhost:1323/v1/menu/recom | POST | UPDATE
+  - https://localhost:1323/v01/menu/recom | POST | UPDATE
 
 - 주문자가 특정 메뉴를 비추천한다.
 
-  - https://localhost:1323/v1/menu/notrecom | POST | UPDATE
+  - https://localhost:1323/v01/menu/notrecom | POST | UPDATE
 
 - 주문자가 특정 메뉴에 대해 리뷰를 남긴다. > 대신 상태가 배달 중 or 배달완료일때만 업데이트 가능
-  - https://localhost:1323/v1/menu/review | POST | UPDATE + INSTERT
+  - https://localhost:1323/v01/menu/review | POST | UPDATE + INSTERT
 
 ### 공통
 
 - 피 주문자,주문자가 전체 메뉴를 조회한다.
 
-  - https://localhost:1323/v1/menu/all | GET | SELECT
+  - https://localhost:1323/v01/menu/all | GET | SELECT
 
 - 피 주문자,주문자가 추천으로 필터링해서 메뉴를 조회한다.
 
-  - https://localhost:1323/v1/menu/filter/recom | GET | SELECT
+  - https://localhost:1323/v01/menu/filter/recom | GET | SELECT
 
 - 피 주문자,주문자가 평점으로 필터링해서 메뉴를 조회한다.
 
-  - https://localhost:1323/v1/menu/filter/rate | GET | SELECT
+  - https://localhost:1323/v01/menu/filter/rate | GET | SELECT
 
 - 피 주문자,주문자가 주문수로 필터링해서 메뉴를 조회한다.
 
-  - https://localhost:1323/v1/menu/filter/count | GET | SELECT
+  - https://localhost:1323/v01/menu/filter/count | GET | SELECT
 
 - 피 주문자,주문자가 최신날짜기준으로 필터링해서 메뉴를 조회한다.
 
-  - https://localhost:1323/v1/menu/filter/latest | GET | SELECT
+  - https://localhost:1323/v01/menu/filter/latest | GET | SELECT
 
 - 피 주문자,주문자가 특정 메뉴를 조회한다.
 
-  - https://localhost:1323/v1/menu/1 | GET | SELECT
+  - https://localhost:1323/v01/menu/1 | GET | SELECT
 
 - 피 주문자,주문자가 주문내역을 조회한다.
 
-  - https://localhost:1323/v1/order/history | GET | SELECT
+  - https://localhost:1323/v01/order/history | GET | SELECT
 
 - 피 주문자,주문자가 주문상태를 조회한다.
-  - https://localhost:1323/v1/order/status | GET | SELECT
+  - https://localhost:1323/v01/order/status | GET | SELECT
 
 # DB
 
 ### 메뉴
 
-table menu
+Database : mini-oss
 
-- id / int #주문 수
+#### Collection menu
+
+- menu_id / int
 - image_url / "string"
 - name / "string"
 - quantity / int
 - price / int
 - recommendation / bool/string (true or false) # 추천
-- rating # 평점 주문에 있는 모든 평점을 더해서 평균내기
-- date_time #최신 기본적으로 생성시간 지원해주면 만들필요 없음
-- review #개별 메뉴 리뷰
 
 ### 주문
 
-#### table order
+#### Collection order
 
 - id / int
 - name 주문자 이름
@@ -185,10 +190,13 @@ table menu
 - address / "string"
 - quantity / int
 - payment_information #결제정보
+- rating # 평점 주문에 있는 모든 평점을 더해서 평균내기
+- date_time #최신 기본적으로 생성시간 지원해주면 만들필요 없음
+- review #개별 메뉴 리뷰
 
 ### 주문상태 - 주문자용 + 피주문자용
 
-#### table order_status
+#### Collection order_status
 
 - id / int
 - intake / true or false #주문 or 주문 취소
@@ -199,13 +207,13 @@ table menu
 - review string #리뷰작성
 - user string #주문자
 
-#### table user_account
+#### Collection user_account
 
 - id / int
 - user string
 - password string
 
-#### table admin_account
+#### Collection admin_account
 
 - id / int
 - user string

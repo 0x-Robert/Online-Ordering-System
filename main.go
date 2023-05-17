@@ -6,7 +6,7 @@ import (
 	"log"
 	"net/http"
 	ctl "online-ordering-system/controller"
-	_ "online-ordering-system/docs"
+
 	"online-ordering-system/model"
 	rt "online-ordering-system/router"
 	"os"
@@ -42,12 +42,20 @@ func main() {
 		//~생략
 	} else {
 
+		// mapi := &http.Server{
+		// 	Addr:           ":8080",
+		// 	Handler:        rt.Idx(),
+		// 	ReadTimeout:    5 * time.Second,
+		// 	WriteTimeout:   10 * time.Second,
+		// 	MaxHeaderBytes: 1 << 20,
+		// }
+
 		//http 서버 설정 변수
 		mapi := &http.Server{
 			Addr:           ":8080",
 			Handler:        rt.Idx(),
-			ReadTimeout:    5 * time.Second,
-			WriteTimeout:   10 * time.Second,
+			ReadTimeout:    0,
+			WriteTimeout:   0,
 			MaxHeaderBytes: 1 << 20,
 		}
 
