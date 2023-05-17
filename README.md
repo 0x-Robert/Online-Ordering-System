@@ -172,12 +172,13 @@ Database : mini-oss
 
 #### Collection menu
 
-- menu_id / int
-- image_url / "string"
-- name / "string"
-- quantity / int
-- price / int
-- recommendation / bool/string (true or false) # 추천
+- MenuId / int
+- ImageUrl / "string"
+- Name / "string"
+- Quantity / int
+- Price / int
+- Recommendation / bool/string (true or false) # 추천
+- Admin # 피주문자
 
 ### 주문
 
