@@ -70,76 +70,93 @@
 ### 피주문자
 
 - 피주문자 회원가입
-- https://localhost:1323/admin/v1/register | POST | CREATE
+
+  - https://localhost:1323/admin/v1/register | POST | CREATE
 
 - 피주문자 로그인
-- https://localhost:1323/admin/v1/login | POST | UPDATE
+
+  - https://localhost:1323/admin/v1/login | POST | UPDATE
 
 - 피 주문자가 메뉴를 등록한다.
-- https://localhost:1323/admin/v1/menu | POST | CREATE
-  입력 값은 사진url(string), 메뉴이름(string), 수량(int), 가격(int), 추천/비추천(true/false)
+
+  - https://localhost:1323/admin/v1/menu | POST | CREATE
+    입력 값은 사진url(string), 메뉴이름(string), 수량(int), 가격(int), 추천/비추천(true/false)
 
 - 피 주문자가 기존 메뉴를 삭제한다.
-- https://localhost:1323/admin/v1/menu | POST | DELETE
-  입력값은 메뉴별 아이디다.
+
+  - https://localhost:1323/admin/v1/menu | POST | DELETE
+    입력값은 메뉴별 아이디다.
 
 - 피주문자의 최신 접수내역을 확인하고 상태를 업데이트한다.
-- https://localhost:1323/admin/v1/menu/status | POST | UPDATE
+
+  - https://localhost:1323/admin/v1/menu/status | POST | UPDATE
 
 - 피주문자의 최신 접수내역을 확인하고 상태를 가져온다.
-- https://localhost:1323/admin/v1/menu/status | GET | SELECT
+  - https://localhost:1323/admin/v1/menu/status | GET | SELECT
 
 ### 주문자
 
 - 주문자 회원가입
-- https://localhost:1323/v1/register | POST | CREATE
-  -> 입력값은 아이디, 비번이다.
+
+  - https://localhost:1323/v1/register | POST | CREATE
+    -> 입력값은 아이디, 비번이다.
 
 - 주문자 로그인
-- https://localhost:1323/v1/login | POST | UPDATE
-  -> 입력값은 아이디, 비번이다.
+
+  - https://localhost:1323/v1/login | POST | UPDATE
+    -> 입력값은 아이디, 비번이다.
 
 - 주문자 메뉴 주문
-- https://localhost:1323/v1/login | POST | UPDATE
-  -> 선택한 메뉴를 주문하기 (선택메뉴 정보와 주문자 정보 + 전화번호, 주소, 메뉴수량, 결제정보(현금,카드,네이버페이,카카오페이?))
-  -> 대신 메뉴 추가시 상태가 배달중일 경우 실패, 신규주문으로 전환알림
-  -> 메뉴 변경시 상태가 조리중, 배달중일 경우 실패알림  
-  -> Order Status 보고 조건에 따라 진행
+
+  - https://localhost:1323/v1/login | POST | UPDATE
+    -> 선택한 메뉴를 주문하기 (선택메뉴 정보와 주문자 정보 + 전화번호, 주소, 메뉴수량, 결제정보(현금,카드,네이버페이,카카오페이?))
+    -> 대신 메뉴 추가시 상태가 배달중일 경우 실패, 신규주문으로 전환알림
+    -> 메뉴 변경시 상태가 조리중, 배달중일 경우 실패알림  
+    -> Order Status 보고 조건에 따라 진행
 
 - 주문자가 특정 메뉴를 추천한다.
-- https://localhost:1323/v1/menu/recom | POST | UPDATE
+
+  - https://localhost:1323/v1/menu/recom | POST | UPDATE
 
 - 주문자가 특정 메뉴를 비추천한다.
-- https://localhost:1323/v1/menu/notrecom | POST | UPDATE
+
+  - https://localhost:1323/v1/menu/notrecom | POST | UPDATE
 
 - 주문자가 특정 메뉴에 대해 리뷰를 남긴다. > 대신 상태가 배달 중 or 배달완료일때만 업데이트 가능
-- https://localhost:1323/v1/menu/review | POST | UPDATE + INSTERT
+  - https://localhost:1323/v1/menu/review | POST | UPDATE + INSTERT
 
 ### 공통
 
 - 피 주문자,주문자가 전체 메뉴를 조회한다.
-- https://localhost:1323/v1/menu/all | GET | SELECT
+
+  - https://localhost:1323/v1/menu/all | GET | SELECT
 
 - 피 주문자,주문자가 추천으로 필터링해서 메뉴를 조회한다.
-- https://localhost:1323/v1/menu/filter/recom | GET | SELECT
+
+  - https://localhost:1323/v1/menu/filter/recom | GET | SELECT
 
 - 피 주문자,주문자가 평점으로 필터링해서 메뉴를 조회한다.
-- https://localhost:1323/v1/menu/filter/rate | GET | SELECT
+
+  - https://localhost:1323/v1/menu/filter/rate | GET | SELECT
 
 - 피 주문자,주문자가 주문수로 필터링해서 메뉴를 조회한다.
-- https://localhost:1323/v1/menu/filter/count | GET | SELECT
+
+  - https://localhost:1323/v1/menu/filter/count | GET | SELECT
 
 - 피 주문자,주문자가 최신날짜기준으로 필터링해서 메뉴를 조회한다.
-- https://localhost:1323/v1/menu/filter/latest | GET | SELECT
+
+  - https://localhost:1323/v1/menu/filter/latest | GET | SELECT
 
 - 피 주문자,주문자가 특정 메뉴를 조회한다.
-- https://localhost:1323/v1/menu/1 | GET | SELECT
+
+  - https://localhost:1323/v1/menu/1 | GET | SELECT
 
 - 피 주문자,주문자가 주문내역을 조회한다.
-- https://localhost:1323/v1/order/history | GET | SELECT
+
+  - https://localhost:1323/v1/order/history | GET | SELECT
 
 - 피 주문자,주문자가 주문상태를 조회한다.
-- https://localhost:1323/v1/order/status | GET | SELECT
+  - https://localhost:1323/v1/order/status | GET | SELECT
 
 # DB
 
@@ -159,7 +176,7 @@ table menu
 
 ### 주문
 
-table order
+#### table order
 
 - id / int
 - name 주문자 이름
@@ -171,7 +188,7 @@ table order
 
 ### 주문상태 - 주문자용 + 피주문자용
 
-table order_status
+#### table order_status
 
 - id / int
 - intake / true or false #주문 or 주문 취소
@@ -182,12 +199,14 @@ table order_status
 - review string #리뷰작성
 - user string #주문자
 
-table user_account
-id / int
-user string
-password string
+#### table user_account
 
-table admin_account
-id / int
-user string
-password string
+- id / int
+- user string
+- password string
+
+#### table admin_account
+
+- id / int
+- user string
+- password string
