@@ -51,6 +51,11 @@ func (p *Router) Idx() *gin.Engine {
 	router.POST("/admin/v01/login", p.ct.LoginHandler)
 	router.POST("/admin/v01/menu/create", p.ct.CreateMenuHandler)
 	router.POST("/admin/v01/menu/delete", p.ct.DeleteMenuHandler)
+	router.POST("/admin/v01/menu/recom", p.ct.RecommendHandler)
 	router.GET("/admin/v01/menu/status", p.ct.MenuStatusHandler)
+	router.GET("/v01/menu/detail", p.ct.DetailMenuHandler)
+	router.POST("/v01/register", p.ct.UserRegisterHandler)
+	router.POST("/v01/login", p.ct.UserLoginHandler)
+	router.POST("/v01/order", p.ct.CreateOrderHandler)
 	return router
 }

@@ -26,6 +26,8 @@
   - 상태가 배달중 or 배달완료 일때만 업데이트 가능
   - 평점 및 리뷰작성 완료시 과거 주문내역으로 업데이트
 
+# 다이어그램
+
 <img src ="./OOS.drawio.png">
 
 # 요구사항 원본을 통해 내가 이해한 요구사항
@@ -74,14 +76,8 @@
 - 피주문자 회원가입
 
   - http://localhost:8080/admin/v01/register | POST | CREATE
-    -> 입력값은 다음과 같다.
-    ID string `json:"id"`
-    Password string `json:"password"`
 
 - 피주문자 로그인
-  -> 입력값은 다음과 같다.
-  ID string `json:"id"`
-  Password string `json:"password"`
 
   - http://localhost:8080/admin/v01/login | POST | UPDATE
 
@@ -96,7 +92,11 @@
     입력값은 메뉴별 아이디다.
 
 - 피주문자의 최신 접수내역을 확인하고 상태를 가져온다.
+
   - http://localhost:8080/admin/v01/menu/status | GET | SELECT
+
+- 피주문자가 메뉴를 추천/비추천 할 수 있도록 업데이트 한다.
+  - http://localhost:8080/admin/v01/menu/recom| POST | UPDATE
 
 ### 주문자
 
@@ -112,19 +112,11 @@
 
 - 주문자 메뉴 주문
 
-  - http://localhost:8080/v01/login | POST | UPDATE
+  - http://localhost:8080/v01/order | POST | Create
     -> 선택한 메뉴를 주문하기 (선택메뉴 정보와 주문자 정보 + 전화번호, 주소, 메뉴수량, 결제정보(현금,카드,네이버페이,카카오페이?))
     -> 대신 메뉴 추가시 상태가 배달중일 경우 실패, 신규주문으로 전환알림
     -> 메뉴 변경시 상태가 조리중, 배달중일 경우 실패알림  
     -> Order Status 보고 조건에 따라 진행
-
-- 주문자가 특정 메뉴를 추천한다.
-
-  - http://localhost:8080/v01/menu/recom | POST | UPDATE
-
-- 주문자가 특정 메뉴를 비추천한다.
-
-  - http://localhost:8080/v01/menu/notrecom | POST | UPDATE
 
 - 주문자가 특정 메뉴에 대해 리뷰를 남긴다. > 대신 상태가 배달 중 or 배달완료일때만 업데이트 가능
   - http://localhost:8080/v01/menu/review | POST | UPDATE + INSTERT
@@ -170,50 +162,52 @@ Database : mini-oss
 
 #### Collection menu
 
-- MenuId / int
-- ImageUrl / "string"
-- Name / "string"
-- Quantity / int
-- Price / int
-- Recommendation / bool/string (true or false) # 추천
-- Admin # 피주문자
+type Menu struct {
+MenuId int `json:"menuid"`
+ImageUrl string `json:"imageurl"`
+Name string `json:"name"`
+Quantity int `json:"quantity"`
+Price int `json:"price"`
+Recommendation bool `json:"recommendation"`
+Admin string `json:"admin"`
+Score int `json:"score"`
+Review string `json:"review"`
+}
 
 ### 주문
 
 #### Collection order
 
-- id / int
-- name 주문자 이름
-- menu 전체정보 > menu 테이블의 이름(menu.name)을 기준으로 조인
-- phone_number / "string" or int?
-- address / "string"
-- quantity / int
-- payment_information #결제정보
-- rating # 평점 주문에 있는 모든 평점을 더해서 평균내기
-- date_time #최신 기본적으로 생성시간 지원해주면 만들필요 없음
-- review #개별 메뉴 리뷰
+type Order struct {
+MenuName string `json:"menuname"`
+Customer string `json:"customer"`
+PhoneNumber string `json:"phonenumber"`
+Address string `json:"address"`
+Quantity int `json:"quantity"`
+PaymentInformation string `json:"paymentinformation"`
+}
 
 ### 주문상태 - 주문자용 + 피주문자용
 
 #### Collection order_status
 
-- id / int
 - intake / true or false #주문 or 주문 취소
 - cooking / true or false # 조리 중
 - delivering / true of false # 배달 중
 - complete / true or false #배달완료
+- user string #주문자
+
+#### Collection review_rating
+
 - rating int #평점
 - review string #리뷰작성
-- user string #주문자
 
 #### Collection user_account
 
-- id / int
 - user string
 - password string
 
 #### Collection admin_account
 
-- id / int
 - user string
 - password string
