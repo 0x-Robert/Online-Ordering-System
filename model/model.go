@@ -28,7 +28,7 @@ func NewModel() (*Model, error) {
 	} else if err := r.client.Ping(context.Background(), nil); err != nil {
 		return nil, err
 	} else {
-		db := r.client.Database("go-ready")
+		db := r.client.Database("")
 		r.colPersons = db.Collection("tPerson")
 	}
 

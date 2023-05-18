@@ -1,5 +1,5 @@
 [server] ##nomal type
-mode = "dev"
+mode = "dev" 
 port = ":8080"
 
 [db] #data access object

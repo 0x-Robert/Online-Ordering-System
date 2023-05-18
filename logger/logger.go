@@ -1,7 +1,15 @@
 package logger
-~
+
+
+import (
+	"github.com/natefinch/lumberjack"
+	"go.uber.org/zap"
+	 "go.uber.org/zap/zapcore"
+)
 // 전역 로거
 var lg *zap.Logger
+
+
 //로거 초기화 컨피그 파라메터
 func InitLogger(cfg *conf.Config) (err error) {
 	cf := cfg.Log

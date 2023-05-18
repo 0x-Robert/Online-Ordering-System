@@ -32,7 +32,7 @@ type Menu struct {
 	Price          int      `json:"price"`          //메뉴가격
 	Recommendation bool     `json:"recommendation"` //메뉴 추천/비추천
 	Admin          string   `json:"admin"`          //관리자 이름
-	Score          int      `json:"score"`          //메뉴 리뷰
+	Score          int      `json:"score"`          //점수
 	CreateTime     string   `json:"create_time"`    //생성시간
 	Orders         []Order  `json:"orders"`         //추후 통계를 위해 개발 필요 오더스를 취합해서 평점 계산필요
 	Reviews        []Review `json:"reviews"`
@@ -653,7 +653,7 @@ func (p *Controller) CreateOrderReviewHandler(c *gin.Context) {
 	collection := client.Database("mini-oss").Collection("order")
 
 	// 데이터 삽입
-	if _, err := collection.InsertOne(ctx, order); err != nil {
+	if _, err := collection.InsertOne(ctx, review); err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to insert data into MongoDB"})
 		return
 	}

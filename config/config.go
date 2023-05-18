@@ -7,9 +7,31 @@ import (
 	"github.com/naoina/toml"
 )
 
-func GetConfig(fpath string) {
+// config.toml 파일 기준으로 구조체 선언
+type Work struct {
+	Name     string
+	Desc     string
+	Excute   string
+	Duration int
+	Args     string
+}
+
+type Config struct {
+	Server struct {
+		Mode string
+		Port string
+	}
+
+	DB map[string]map[string]interface{}
+
+	Work []Work
+}
+
+// 파일 오픈
+func GetConfig(fpath string) *Config {
 	c := new(Config)
 
+	fmt.Println("c", c)
 	if file, err := os.Open(fpath); err != nil {
 		panic(err)
 	} else {
@@ -21,5 +43,6 @@ func GetConfig(fpath string) {
 			fmt.Println(c)
 			return c
 		}
+
 	}
 }
