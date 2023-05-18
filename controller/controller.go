@@ -21,25 +21,47 @@ type User struct {
 	Password string `json:"password"`
 }
 
+// 메뉴 : 오더 = 1:N
+// 메뉴 : 리뷰 = 1:N
+// 오더 : 평점 = 1:1
 type Menu struct {
-	MenuId         int    `json:"menuid"`
-	ImageUrl       string `json:"imageurl"`
-	Name           string `json:"name"`
-	Quantity       int    `json:"quantity"`
-	Price          int    `json:"price"`
-	Recommendation bool   `json:"recommendation"`
-	Admin          string `json:"admin"`
-	Score          int    `json:"score"`
-	Review         string `json:"review"`
+	MenuId         int      `json:"menuid"`         //메뉴 아이디, 추후 중복방지를 위해 둠
+	ImageUrl       string   `json:"imageurl"`       //이미지 url
+	Name           string   `json:"name"`           //메뉴이름
+	Quantity       int      `json:"quantity"`       //총 개수
+	Price          int      `json:"price"`          //메뉴가격
+	Recommendation bool     `json:"recommendation"` //메뉴 추천/비추천
+	Admin          string   `json:"admin"`          //관리자 이름
+	Score          int      `json:"score"`          //메뉴 리뷰
+	CreateTime     string   `json:"create_time"`    //생성시간
+	Orders         []Order  `json:"orders"`         //추후 통계를 위해 개발 필요 오더스를 취합해서 평점 계산필요
+	Reviews        []Review `json:"reviews"`
 }
 
+/*
+```
+order status
+- intake / true or false #주문 or 주문 취소
+- cooking / true or false # 조리 중
+- delivering / true of false # 배달 중
+- complete / true or false #배달완료
+- user string #주문자
+```
+*/
 type Order struct {
-	MenuName           string `json:"menuname"`
-	Customer           string `json:"customer"`
-	PhoneNumber        string `json:"phonenumber"`
-	Address            string `json:"address"`
-	Quantity           int    `json:"quantity"`
-	PaymentInformation string `json:"paymentinformation"`
+	MenuName           string `json:"menuname"`           //메뉴이름
+	Customer           string `json:"customer"`           //고객
+	PhoneNumber        string `json:"phonenumber"`        //번호
+	Address            string `json:"address"`            //주소
+	Quantity           int    `json:"quantity"`           //개수
+	PaymentInformation string `json:"paymentinformation"` //결제정보
+	Status             string `json:"status"`             //order status
+	Rating             string `json:"rating"`             // 평점
+}
+
+type Review struct {
+	ReviewTitle   string `json:"review_title"`   //리뷰 제목
+	ReviewContent string `json:"review_content"` //리뷰 콘텐츠
 }
 
 type Controller struct {
@@ -280,6 +302,21 @@ func (p *Controller) UserLoginHandler(c *gin.Context) {
 
 func (p *Controller) CreateMenuHandler(c *gin.Context) {
 	var menu Menu
+
+	//프론트에서 어떻게 시간요청이 올지 감이 안와서 그냥 다 디비에 넣기
+	// now := time.Now()
+	// custom := now.Format("2006-01-02 15:04:05")
+	// fmt.Println("custom", custom)
+
+	// // 시간 파싱
+	// nowTime := "2006-01-02 15:04:05"
+	// t, err := time.Parse(layout, menu.Time)
+	// if err != nil {
+	// 	c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid time format"})
+	// 	return
+	// }
+
+	// menu.Time = t.String()
 
 	if err := c.ShouldBindJSON(&menu); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
@@ -544,6 +581,48 @@ func (p *Controller) CreateOrderHandler(c *gin.Context) {
 	var order Order
 
 	if err := c.ShouldBindJSON(&order); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+
+	}
+
+	// MongoDB 연결 설정
+	client, err := mongo.NewClient(options.Client().ApplyURI("mongodb://localhost:27017"))
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to connect to MongoDB"})
+		return
+	}
+
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	defer cancel()
+
+	if err := client.Connect(ctx); err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to connect to MongoDB"})
+		return
+	}
+
+	defer func() {
+		if err := client.Disconnect(ctx); err != nil {
+			log.Println("Failed to disconnect from MongoDB")
+		}
+	}()
+
+	// MongoDB 컬렉션 선택
+	collection := client.Database("mini-oss").Collection("order")
+
+	// 데이터 삽입
+	if _, err := collection.InsertOne(ctx, order); err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to insert data into MongoDB"})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{"message": "Order created successfully"})
+}
+
+func (p *Controller) CreateOrderReviewHandler(c *gin.Context) {
+	var review Review
+
+	if err := c.ShouldBindJSON(&review); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 

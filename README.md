@@ -188,19 +188,9 @@ PhoneNumber string `json:"phonenumber"`
 Address string `json:"address"`
 Quantity int `json:"quantity"`
 PaymentInformation string `json:"paymentinformation"`
+Status  `json:"intake"`
+
 }
-```
-
-### 주문상태 - 주문자용 + 피주문자용
-
-#### Collection order_status
-
-```
-- intake / true or false #주문 or 주문 취소
-- cooking / true or false # 조리 중
-- delivering / true of false # 배달 중
-- complete / true or false #배달완료
-- user string #주문자
 ```
 
 #### Collection review_rating
