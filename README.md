@@ -26,7 +26,9 @@
   - 상태가 배달중 or 배달완료 일때만 업데이트 가능
   - 평점 및 리뷰작성 완료시 과거 주문내역으로 업데이트
 
-# 요구사항 정리 (수정)
+<img src ="./OOS.drawio.png">
+
+# 요구사항 원본을 통해 내가 이해한 요구사항
 
 ## 메뉴 등록/삭제
 
@@ -71,7 +73,7 @@
 
 - 피주문자 회원가입
 
-  - https://localhost:1323/admin/v01/register | POST | CREATE
+  - http://localhost:8080/admin/v01/register | POST | CREATE
     -> 입력값은 다음과 같다.
     ID string `json:"id"`
     Password string `json:"password"`
@@ -81,40 +83,36 @@
   ID string `json:"id"`
   Password string `json:"password"`
 
-  - https://localhost:1323/admin/v01/login | POST | UPDATE
+  - http://localhost:8080/admin/v01/login | POST | UPDATE
 
 - 피 주문자가 메뉴를 등록한다.
 
-  - https://localhost:1323/admin/v01/menu/create | POST | CREATE
+  - http://localhost:8080/admin/v01/menu/create | POST | CREATE
     입력 값은 사진url(string), 메뉴이름(string), 수량(int), 가격(int), 추천/비추천(true/false)
 
 - 피 주문자가 기존 메뉴를 삭제한다.
 
-  - https://localhost:1323/admin/v01/menu/delete | POST | DELETE
+  - http://localhost:8080/admin/v01/menu/delete | POST | DELETE
     입력값은 메뉴별 아이디다.
 
-- 피주문자의 최신 접수내역을 확인하고 상태를 업데이트한다.
-
-  - https://localhost:1323/admin/v01/menu/status | POST | UPDATE
-
 - 피주문자의 최신 접수내역을 확인하고 상태를 가져온다.
-  - https://localhost:1323/admin/v01/menu/status | GET | SELECT
+  - http://localhost:8080/admin/v01/menu/status | GET | SELECT
 
 ### 주문자
 
 - 주문자 회원가입
 
-  - https://localhost:1323/v01/register | POST | CREATE
+  - http://localhost:8080/v01/register | POST | CREATE
     -> 입력값은 아이디, 비번이다.
 
 - 주문자 로그인
 
-  - https://localhost:1323/v01/login | POST | UPDATE
+  - http://localhost:8080/v01/login | POST | UPDATE
     -> 입력값은 아이디, 비번이다.
 
 - 주문자 메뉴 주문
 
-  - https://localhost:1323/v01/login | POST | UPDATE
+  - http://localhost:8080/v01/login | POST | UPDATE
     -> 선택한 메뉴를 주문하기 (선택메뉴 정보와 주문자 정보 + 전화번호, 주소, 메뉴수량, 결제정보(현금,카드,네이버페이,카카오페이?))
     -> 대신 메뉴 추가시 상태가 배달중일 경우 실패, 신규주문으로 전환알림
     -> 메뉴 변경시 상태가 조리중, 배달중일 경우 실패알림  
@@ -122,47 +120,47 @@
 
 - 주문자가 특정 메뉴를 추천한다.
 
-  - https://localhost:1323/v01/menu/recom | POST | UPDATE
+  - http://localhost:8080/v01/menu/recom | POST | UPDATE
 
 - 주문자가 특정 메뉴를 비추천한다.
 
-  - https://localhost:1323/v01/menu/notrecom | POST | UPDATE
+  - http://localhost:8080/v01/menu/notrecom | POST | UPDATE
 
 - 주문자가 특정 메뉴에 대해 리뷰를 남긴다. > 대신 상태가 배달 중 or 배달완료일때만 업데이트 가능
-  - https://localhost:1323/v01/menu/review | POST | UPDATE + INSTERT
+  - http://localhost:8080/v01/menu/review | POST | UPDATE + INSTERT
 
 ### 공통
 
 - 피 주문자,주문자가 전체 메뉴를 조회한다.
 
-  - https://localhost:1323/v01/menu/all | GET | SELECT
+  - http://localhost:8080/v01/menu/all | GET | SELECT
 
 - 피 주문자,주문자가 추천으로 필터링해서 메뉴를 조회한다.
 
-  - https://localhost:1323/v01/menu/filter/recom | GET | SELECT
+  - http://localhost:8080/v01/menu/filter/recom | GET | SELECT
 
 - 피 주문자,주문자가 평점으로 필터링해서 메뉴를 조회한다.
 
-  - https://localhost:1323/v01/menu/filter/rate | GET | SELECT
+  - http://localhost:8080/v01/menu/filter/rate | GET | SELECT
 
 - 피 주문자,주문자가 주문수로 필터링해서 메뉴를 조회한다.
 
-  - https://localhost:1323/v01/menu/filter/count | GET | SELECT
+  - http://localhost:8080/v01/menu/filter/count | GET | SELECT
 
 - 피 주문자,주문자가 최신날짜기준으로 필터링해서 메뉴를 조회한다.
 
-  - https://localhost:1323/v01/menu/filter/latest | GET | SELECT
+  - http://localhost:8080/v01/menu/filter/latest | GET | SELECT
 
 - 피 주문자,주문자가 특정 메뉴를 조회한다.
 
-  - https://localhost:1323/v01/menu/1 | GET | SELECT
+  - http://localhost:8080/v01/menu/1 | GET | SELECT
 
 - 피 주문자,주문자가 주문내역을 조회한다.
 
-  - https://localhost:1323/v01/order/history | GET | SELECT
+  - http://localhost:8080/v01/order/history | GET | SELECT
 
 - 피 주문자,주문자가 주문상태를 조회한다.
-  - https://localhost:1323/v01/order/status | GET | SELECT
+  - http://localhost:8080/v01/order/status | GET | SELECT
 
 # DB
 

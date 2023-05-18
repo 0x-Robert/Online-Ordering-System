@@ -51,6 +51,6 @@ func (p *Router) Idx() *gin.Engine {
 	router.POST("/admin/v01/login", p.ct.LoginHandler)
 	router.POST("/admin/v01/menu/create", p.ct.CreateMenuHandler)
 	router.POST("/admin/v01/menu/delete", p.ct.DeleteMenuHandler)
-
+	router.GET("/admin/v01/menu/status", p.ct.MenuStatusHandler)
 	return router
 }
