@@ -162,6 +162,7 @@ Database : mini-oss
 
 #### Collection menu
 
+```
 type Menu struct {
 MenuId int `json:"menuid"`
 ImageUrl string `json:"imageurl"`
@@ -173,11 +174,13 @@ Admin string `json:"admin"`
 Score int `json:"score"`
 Review string `json:"review"`
 }
+```
 
 ### 주문
 
 #### Collection order
 
+```
 type Order struct {
 MenuName string `json:"menuname"`
 Customer string `json:"customer"`
@@ -186,28 +189,37 @@ Address string `json:"address"`
 Quantity int `json:"quantity"`
 PaymentInformation string `json:"paymentinformation"`
 }
+```
 
 ### 주문상태 - 주문자용 + 피주문자용
 
 #### Collection order_status
 
+```
 - intake / true or false #주문 or 주문 취소
 - cooking / true or false # 조리 중
 - delivering / true of false # 배달 중
 - complete / true or false #배달완료
 - user string #주문자
+```
 
 #### Collection review_rating
 
+```
 - rating int #평점
 - review string #리뷰작성
+```
 
 #### Collection user_account
 
+```
 - user string
 - password string
+```
 
 #### Collection admin_account
 
+```
 - user string
 - password string
+```
