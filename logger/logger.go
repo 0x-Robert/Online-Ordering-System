@@ -1,19 +1,31 @@
 package logger
 
-
 import (
+	"bytes"
+	"fmt"
+	"net"
+	"net/http"
+	"net/http/httputil"
+	conf "online-ordering-system/config"
+	"os"
+	"runtime/debug"
+	"strings"
+	"time"
+
+	"github.com/gin-gonic/gin"
 	"github.com/natefinch/lumberjack"
 	"go.uber.org/zap"
-	 "go.uber.org/zap/zapcore"
+	"go.uber.org/zap/zapcore"
 )
+
 // 전역 로거
 var lg *zap.Logger
+var b bytes.Buffer
 
-
-//로거 초기화 컨피그 파라메터
+// 로거 초기화 컨피그 파라메터
 func InitLogger(cfg *conf.Config) (err error) {
 	cf := cfg.Log
-
+	fmt.Println("cf", cf)
 	now := time.Now()
 	lPath := fmt.Sprintf("%s_%s.log", cf.Fpath, now.Format("2006-01-02"))
 	// 설정 옵션
@@ -32,7 +44,7 @@ func InitLogger(cfg *conf.Config) (err error) {
 }
 
 func Debug(ctx ...interface{}) {
-	var b bytes.Buffer
+
 	for _, str := range ctx {
 		b.WriteString(str.(string))
 		b.WriteString(" ")
@@ -43,19 +55,19 @@ func Debug(ctx ...interface{}) {
 
 // Info is a convenient alias for Root().Info
 func Info(ctx ...interface{}) {
-~
+
 	lg.Info("info", zap.String("-", b.String()))
 }
 
 // Warn is a convenient alias for Root().Warn
 func Warn(ctx ...interface{}) {
-~
+
 	lg.Warn("warn", zap.String("-", b.String()))
 }
 
 // Error is a convenient alias for Root().Error
 func Error(ctx ...interface{}) {
-~
+
 	lg.Error("error", zap.String("-", b.String()))
 }
 

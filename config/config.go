@@ -25,6 +25,14 @@ type Config struct {
 	DB map[string]map[string]interface{}
 
 	Work []Work
+
+	Log struct {
+		Level   string
+		Fpath   string
+		Msize   int
+		Mage    int
+		Mbackup int
+	}
 }
 
 // 파일 오픈

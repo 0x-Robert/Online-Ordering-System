@@ -3,12 +3,18 @@ package router
 import (
 	"fmt"
 	ctl "online-ordering-system/controller"
+	"online-ordering-system/logger"
 
 	"github.com/gin-gonic/gin"
 )
 
 type Router struct {
 	ct *ctl.Controller
+}
+
+func GetOK(c *gin.Context) {
+	c.JSON(200, gin.H{"msg": "ok"})
+	return
 }
 
 func NewRouter(ctl *ctl.Controller) (*Router, error) {
@@ -52,13 +58,21 @@ func liteAuth() gin.HandlerFunc {
 
 // 실제 라우팅
 func (p *Router) Idx() *gin.Engine {
-	//~생략
+	//~
 
-	r := gin.New() //gin 선언
+	//gin.SetMode(gin.ReleaseMode)
+	gin.SetMode(gin.DebugMode)
 
-	r.Use(gin.Logger())   //gin 내부 log, logger 미들웨어 사용 선언
-	r.Use(gin.Recovery()) //gin 내부 recover, recovery 미들웨어 사용 - 패닉복구
-	r.Use(CORS())         //crossdomain 미들웨어 사용 등록
+	r := gin.Default() //gin 선언
+
+	// r.Use(gin.Logger())   //gin 내부 log, logger 미들웨어 사용 선언
+	// r.Use(gin.Recovery()) //gin 내부 recover, recovery 미들웨어 사용 - 패닉복구
+
+	r.Use(logger.GinLogger())
+	r.Use(logger.GinRecovery(true))
+	r.Use(CORS()) //crossdomain 미들웨어 사용 등록
+	logger.Info("start server")
+	r.GET("/health", GetOK)
 
 	routerAdmin := r.Group("/admin/v01", liteAuth())
 	{
