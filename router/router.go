@@ -77,7 +77,7 @@ func (p *Router) Idx() *gin.Engine {
 	routerAdmin := r.Group("/admin/v01", liteAuth())
 	{
 		//어드민 레지스터
-		routerAdmin.POST("register", p.ct.RegisterHandler)
+		routerAdmin.POST("register", p.ct.AdminRegisterHandler)
 		//로그인 레지스터
 		routerAdmin.POST("login", p.ct.LoginHandler)
 		//메뉴 생성
@@ -87,7 +87,7 @@ func (p *Router) Idx() *gin.Engine {
 		//메뉴 추천, 비추천
 		routerAdmin.POST("/menu/recom", p.ct.RecommendHandler)
 		//menu 상태 보고 전체 내역 가져오기
-		routerAdmin.GET("/menu/status", p.ct.MenuStatusHandler)
+		routerAdmin.GET("/menu/status", p.ct.GetAllMenuHandler)
 
 	}
 	routerUser := r.Group("/v01", liteAuth())
@@ -97,7 +97,7 @@ func (p *Router) Idx() *gin.Engine {
 		//유저 회원가입
 		routerUser.POST("/register", p.ct.UserRegisterHandler)
 		//유저 로그인
-		routerUser.POST("/login", p.ct.UserLoginHandler)
+		routerUser.POST("/login", p.ct.LoginHandler)
 		//주문 넣기
 		routerUser.POST("/order", p.ct.CreateOrderHandler)
 

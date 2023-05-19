@@ -2,41 +2,41 @@ package model
 
 import (
 	"context"
+	conf "online-ordering-system/config"
 
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
 type Model struct {
-	client     *mongo.Client
-	colPersons *mongo.Collection
-}
-
-type Person struct {
-	Name string `bson:"name"`
-	Age  int    `bson:"age"`
-	Pnum string `bson:"pnum"`
+	client          *mongo.Client
+	colMenu         *mongo.Collection
+	colOrder        *mongo.Collection
+	colOrderStatus  *mongo.Collection
+	colUserAccount  *mongo.Collection
+	colAdminAccount *mongo.Collection
 }
 
 func NewModel() (*Model, error) {
-	r := &Model{}
 
+	config := conf.GetConfig("./config/.config.toml")
+	r := &Model{}
 	var err error
-	mgUrl := "mongodb://127.0.0.1:27017"
+	mgUrl := config.DB["user"]["host"].(string)
+	dbName := config.DB["user"]["name"].(string)
 	if r.client, err = mongo.Connect(context.Background(), options.Client().ApplyURI(mgUrl)); err != nil {
 		return nil, err
 	} else if err := r.client.Ping(context.Background(), nil); err != nil {
 		return nil, err
 	} else {
-		db := r.client.Database("")
-		r.colPersons = db.Collection("tPerson")
+		db := r.client.Database(dbName)
+		r.colMenu = db.Collection("menu")
+		r.colOrder = db.Collection("order")
+		r.colOrderStatus = db.Collection("order_status")
+		r.colAdminAccount = db.Collection("admin_account")
+		r.colUserAccount = db.Collection("user_account")
+
 	}
 
 	return r, nil
-}
-
-func (p *Model) GetPerson() []Person {
-	// ~ 생략
-	var pers []Person
-	return pers
 }

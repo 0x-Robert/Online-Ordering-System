@@ -39,3 +39,52 @@
 {"level":"INFO","time":"2023-05-19T14:19:02.796+0900","caller":"logger/logger.go:59","msg":"info","-":"ready server.... "}
 {"level":"INFO","time":"2023-05-19T14:19:02.796+0900","caller":"logger/logger.go:59","msg":"info","-":"ready server.... "}
 {"level":"ERROR","time":"2023-05-19T14:19:02.796+0900","caller":"logger/logger.go:71","msg":"error","-":"ready server.... "}
+{"level":"DEBUG","time":"2023-05-19T15:51:20.472+0900","caller":"logger/logger.go:53","msg":"debug","-":"ready server.... "}
+{"level":"INFO","time":"2023-05-19T15:51:20.489+0900","caller":"logger/logger.go:59","msg":"info","-":"ready server.... "}
+{"level":"INFO","time":"2023-05-19T15:52:16.917+0900","caller":"logger/logger.go:104","msg":"/admin/v01/register","status":200,"method":"POST","path":"/admin/v01/register","query":"","ip":"127.0.0.1","user-agent":"curl/7.68.0","errors":"","cost":0.08521774}
+{"level":"INFO","time":"2023-05-19T15:52:30.587+0900","caller":"logger/logger.go:104","msg":"/admin/v01/register","status":200,"method":"POST","path":"/admin/v01/register","query":"","ip":"127.0.0.1","user-agent":"curl/7.68.0","errors":"","cost":0.001088241}
+{"level":"INFO","time":"2023-05-19T15:52:30.825+0900","caller":"logger/logger.go:104","msg":"/admin/v01/register","status":200,"method":"POST","path":"/admin/v01/register","query":"","ip":"127.0.0.1","user-agent":"curl/7.68.0","errors":"","cost":0.000819297}
+{"level":"INFO","time":"2023-05-19T15:52:31.052+0900","caller":"logger/logger.go:104","msg":"/admin/v01/register","status":200,"method":"POST","path":"/admin/v01/register","query":"","ip":"127.0.0.1","user-agent":"curl/7.68.0","errors":"","cost":0.000629454}
+{"level":"INFO","time":"2023-05-19T16:00:13.553+0900","caller":"logger/logger.go:59","msg":"info","-":"ready server.... "}
+{"level":"INFO","time":"2023-05-19T16:00:13.553+0900","caller":"logger/logger.go:59","msg":"info","-":"ready server.... "}
+{"level":"ERROR","time":"2023-05-19T16:00:13.553+0900","caller":"logger/logger.go:71","msg":"error","-":"ready server.... "}
+{"level":"DEBUG","time":"2023-05-19T16:00:19.024+0900","caller":"logger/logger.go:53","msg":"debug","-":"ready server.... "}
+{"level":"INFO","time":"2023-05-19T16:00:19.025+0900","caller":"logger/logger.go:59","msg":"info","-":"ready server.... "}
+{"level":"INFO","time":"2023-05-19T16:00:29.361+0900","caller":"logger/logger.go:104","msg":"/admin/v01/register","status":200,"method":"POST","path":"/admin/v01/register","query":"","ip":"127.0.0.1","user-agent":"curl/7.68.0","errors":"","cost":0.002867528}
+{"level":"INFO","time":"2023-05-19T16:00:29.931+0900","caller":"logger/logger.go:104","msg":"/admin/v01/register","status":200,"method":"POST","path":"/admin/v01/register","query":"","ip":"127.0.0.1","user-agent":"curl/7.68.0","errors":"","cost":0.000969701}
+{"level":"INFO","time":"2023-05-19T16:00:30.397+0900","caller":"logger/logger.go:104","msg":"/admin/v01/register","status":200,"method":"POST","path":"/admin/v01/register","query":"","ip":"127.0.0.1","user-agent":"curl/7.68.0","errors":"","cost":0.001472635}
+{"level":"INFO","time":"2023-05-19T16:00:30.794+0900","caller":"logger/logger.go:104","msg":"/admin/v01/register","status":200,"method":"POST","path":"/admin/v01/register","query":"","ip":"127.0.0.1","user-agent":"curl/7.68.0","errors":"","cost":0.000900299}
+{"level":"INFO","time":"2023-05-19T16:00:31.167+0900","caller":"logger/logger.go:104","msg":"/admin/v01/register","status":200,"method":"POST","path":"/admin/v01/register","query":"","ip":"127.0.0.1","user-agent":"curl/7.68.0","errors":"","cost":0.000903917}
+{"level":"INFO","time":"2023-05-19T16:00:31.570+0900","caller":"logger/logger.go:104","msg":"/admin/v01/register","status":200,"method":"POST","path":"/admin/v01/register","query":"","ip":"127.0.0.1","user-agent":"curl/7.68.0","errors":"","cost":0.000923342}
+{"level":"INFO","time":"2023-05-19T16:00:31.980+0900","caller":"logger/logger.go:104","msg":"/admin/v01/register","status":200,"method":"POST","path":"/admin/v01/register","query":"","ip":"127.0.0.1","user-agent":"curl/7.68.0","errors":"","cost":0.000923775}
+{"level":"INFO","time":"2023-05-19T16:00:32.391+0900","caller":"logger/logger.go:104","msg":"/admin/v01/register","status":200,"method":"POST","path":"/admin/v01/register","query":"","ip":"127.0.0.1","user-agent":"curl/7.68.0","errors":"","cost":0.001039371}
+{"level":"INFO","time":"2023-05-19T16:00:32.832+0900","caller":"logger/logger.go:104","msg":"/admin/v01/register","status":200,"method":"POST","path":"/admin/v01/register","query":"","ip":"127.0.0.1","user-agent":"curl/7.68.0","errors":"","cost":0.001832684}
+{"level":"INFO","time":"2023-05-19T16:00:33.431+0900","caller":"logger/logger.go:104","msg":"/admin/v01/register","status":200,"method":"POST","path":"/admin/v01/register","query":"","ip":"127.0.0.1","user-agent":"curl/7.68.0","errors":"","cost":0.001082448}
+{"level":"INFO","time":"2023-05-19T16:00:52.188+0900","caller":"logger/logger.go:104","msg":"/admin/v01/register","status":200,"method":"POST","path":"/admin/v01/register","query":"","ip":"127.0.0.1","user-agent":"curl/7.68.0","errors":"","cost":0.015114081}
+{"level":"INFO","time":"2023-05-19T16:01:01.133+0900","caller":"logger/logger.go:104","msg":"/admin/v01/register","status":200,"method":"POST","path":"/admin/v01/register","query":"","ip":"127.0.0.1","user-agent":"curl/7.68.0","errors":"","cost":0.000886371}
+{"level":"INFO","time":"2023-05-19T16:01:01.494+0900","caller":"logger/logger.go:104","msg":"/admin/v01/register","status":200,"method":"POST","path":"/admin/v01/register","query":"","ip":"127.0.0.1","user-agent":"curl/7.68.0","errors":"","cost":0.001060902}
+{"level":"INFO","time":"2023-05-19T16:01:01.717+0900","caller":"logger/logger.go:104","msg":"/admin/v01/register","status":200,"method":"POST","path":"/admin/v01/register","query":"","ip":"127.0.0.1","user-agent":"curl/7.68.0","errors":"","cost":0.000910792}
+{"level":"INFO","time":"2023-05-19T16:09:13.856+0900","caller":"logger/logger.go:59","msg":"info","-":"ready server.... "}
+{"level":"INFO","time":"2023-05-19T16:09:13.856+0900","caller":"logger/logger.go:59","msg":"info","-":"ready server.... "}
+{"level":"ERROR","time":"2023-05-19T16:09:13.856+0900","caller":"logger/logger.go:71","msg":"error","-":"ready server.... "}
+{"level":"DEBUG","time":"2023-05-19T16:09:19.391+0900","caller":"logger/logger.go:53","msg":"debug","-":"ready server.... "}
+{"level":"INFO","time":"2023-05-19T16:09:19.393+0900","caller":"logger/logger.go:59","msg":"info","-":"ready server.... "}
+{"level":"INFO","time":"2023-05-19T16:10:11.025+0900","caller":"logger/logger.go:104","msg":"/admin/v01/login","status":200,"method":"POST","path":"/admin/v01/login","query":"","ip":"127.0.0.1","user-agent":"curl/7.68.0","errors":"","cost":0.001057062}
+{"level":"INFO","time":"2023-05-19T16:10:23.977+0900","caller":"logger/logger.go:104","msg":"/admin/v01/login","status":200,"method":"POST","path":"/admin/v01/login","query":"","ip":"127.0.0.1","user-agent":"curl/7.68.0","errors":"","cost":0.000791814}
+{"level":"INFO","time":"2023-05-19T16:10:26.463+0900","caller":"logger/logger.go:104","msg":"/admin/v01/login","status":200,"method":"POST","path":"/admin/v01/login","query":"","ip":"127.0.0.1","user-agent":"curl/7.68.0","errors":"","cost":0.00085878}
+{"level":"INFO","time":"2023-05-19T16:10:27.104+0900","caller":"logger/logger.go:104","msg":"/admin/v01/login","status":200,"method":"POST","path":"/admin/v01/login","query":"","ip":"127.0.0.1","user-agent":"curl/7.68.0","errors":"","cost":0.000863385}
+{"level":"INFO","time":"2023-05-19T16:10:27.617+0900","caller":"logger/logger.go:104","msg":"/admin/v01/login","status":200,"method":"POST","path":"/admin/v01/login","query":"","ip":"127.0.0.1","user-agent":"curl/7.68.0","errors":"","cost":0.000917382}
+{"level":"INFO","time":"2023-05-19T16:10:28.085+0900","caller":"logger/logger.go:104","msg":"/admin/v01/login","status":200,"method":"POST","path":"/admin/v01/login","query":"","ip":"127.0.0.1","user-agent":"curl/7.68.0","errors":"","cost":0.001011675}
+{"level":"INFO","time":"2023-05-19T16:10:28.506+0900","caller":"logger/logger.go:104","msg":"/admin/v01/login","status":200,"method":"POST","path":"/admin/v01/login","query":"","ip":"127.0.0.1","user-agent":"curl/7.68.0","errors":"","cost":0.001482405}
+{"level":"INFO","time":"2023-05-19T16:10:28.937+0900","caller":"logger/logger.go:104","msg":"/admin/v01/login","status":200,"method":"POST","path":"/admin/v01/login","query":"","ip":"127.0.0.1","user-agent":"curl/7.68.0","errors":"","cost":0.000872438}
+{"level":"INFO","time":"2023-05-19T16:10:29.290+0900","caller":"logger/logger.go:104","msg":"/admin/v01/login","status":200,"method":"POST","path":"/admin/v01/login","query":"","ip":"127.0.0.1","user-agent":"curl/7.68.0","errors":"","cost":0.001036232}
+{"level":"INFO","time":"2023-05-19T17:25:07.511+0900","caller":"logger/logger.go:59","msg":"info","-":"ready server.... "}
+{"level":"INFO","time":"2023-05-19T17:25:07.511+0900","caller":"logger/logger.go:59","msg":"info","-":"ready server.... "}
+{"level":"ERROR","time":"2023-05-19T17:25:07.511+0900","caller":"logger/logger.go:71","msg":"error","-":"ready server.... "}
+{"level":"DEBUG","time":"2023-05-19T17:25:09.197+0900","caller":"logger/logger.go:53","msg":"debug","-":"ready server.... "}
+{"level":"INFO","time":"2023-05-19T17:25:09.198+0900","caller":"logger/logger.go:59","msg":"info","-":"ready server.... "}
+{"level":"INFO","time":"2023-05-19T17:25:19.565+0900","caller":"logger/logger.go:104","msg":"/admin/v01/login","status":200,"method":"POST","path":"/admin/v01/login","query":"","ip":"127.0.0.1","user-agent":"curl/7.68.0","errors":"","cost":0.000909461}
+{"level":"INFO","time":"2023-05-19T17:25:21.808+0900","caller":"logger/logger.go:104","msg":"/admin/v01/login","status":200,"method":"POST","path":"/admin/v01/login","query":"","ip":"127.0.0.1","user-agent":"curl/7.68.0","errors":"","cost":0.000728842}
+{"level":"INFO","time":"2023-05-19T17:25:34.618+0900","caller":"logger/logger.go:59","msg":"info","-":"ready server.... "}
+{"level":"INFO","time":"2023-05-19T17:25:34.618+0900","caller":"logger/logger.go:59","msg":"info","-":"ready server.... "}
+{"level":"ERROR","time":"2023-05-19T17:25:34.618+0900","caller":"logger/logger.go:71","msg":"error","-":"ready server.... "}

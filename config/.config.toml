@@ -7,7 +7,7 @@ port = ":8080"
 host = "mongodb://localhost:27017"
 user = "user"
 pass = "user!@"
-name = "userDB"
+name = "mini-oss"
 
 [db.account]
 host = "mongodb://localhost:27017"
