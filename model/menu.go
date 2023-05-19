@@ -16,7 +16,7 @@ func (m *Model) CreateMenu(menu Menu) error {
 	opts := options.Update().SetUpsert(true)
 	if _, err := m.colMenu.UpdateOne(context.TODO(), filter, update, opts); err != nil {
 		log.Println(err)
-		fmt.Errorf("fail to create menu: %w", err)
+
 	}
 	return nil
 }
@@ -29,7 +29,7 @@ func (m *Model) DeleteMenu(menu Menu) error {
 	result, err := m.colMenu.DeleteOne(context.TODO(), filter)
 	if err != nil {
 		log.Println(err)
-		fmt.Errorf("fail to delete menu: %w", err)
+
 	}
 	log.Println(result)
 	return nil
@@ -44,13 +44,13 @@ func (m *Model) GetAllMenu() []Menu {
 	if err != nil {
 
 		log.Println(err)
-		fmt.Errorf("fail to get colMenu: %w", err)
+
 	}
 	defer cursor.Close(nil)
 
 	if err := cursor.All(nil, &menus); err != nil {
 		log.Println(err)
-		fmt.Errorf("fail to get All colMenu: %w", err)
+
 	}
 
 	return menus

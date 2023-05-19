@@ -4,13 +4,13 @@ import (
 	"fmt"
 	"log"
 	"net/http"
-	"online-ordering-system/types"
+	model "online-ordering-system/model"
 	"strconv"
 
 	"github.com/gin-gonic/gin"
 )
 
-var menu types.Menu
+var menu model.Menu
 
 func (p *Controller) CreateMenuHandler(c *gin.Context) {
 

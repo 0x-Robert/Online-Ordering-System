@@ -5,6 +5,11 @@ type Admin struct {
 	Password string `json:"password"`
 }
 
+type Admin2 struct {
+	ID       string `json:"id"`
+	Password string `json:"password"`
+}
+
 type User struct {
 	ID       string `json:"id"`
 	Password string `json:"password"`

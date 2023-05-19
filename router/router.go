@@ -101,8 +101,6 @@ func (p *Router) Idx() *gin.Engine {
 		//주문 넣기
 		routerUser.POST("/order", p.ct.CreateOrderHandler)
 
-		//리뷰 남기기
-		routerUser.POST("/order/review", p.ct.CreateOrderReviewHandler)
 	}
 
 	//주문 수정시 상태가 조리중 or 배달 중일 경우 실패

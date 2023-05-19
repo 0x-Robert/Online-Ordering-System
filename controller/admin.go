@@ -2,13 +2,13 @@ package controller
 
 import (
 	"net/http"
-	"online-ordering-system/types"
+	model "online-ordering-system/model"
 
 	"github.com/gin-gonic/gin"
 )
 
 var (
-	admin types.Admin
+	admin model.Admin
 )
 
 func (p *Controller) AdminRegisterHandler(c *gin.Context) {

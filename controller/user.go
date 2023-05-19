@@ -2,13 +2,13 @@ package controller
 
 import (
 	"net/http"
-	"online-ordering-system/types"
+	"online-ordering-system/model"
 
 	"github.com/gin-gonic/gin"
 )
 
 var (
-	user types.User
+	user model.User
 )
 
 func (p *Controller) UserRegisterHandler(c *gin.Context) {

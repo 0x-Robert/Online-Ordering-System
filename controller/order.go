@@ -3,14 +3,14 @@ package controller
 import (
 	"net/http"
 
-	"online-ordering-system/types"
+	"online-ordering-system/model"
 
 	"github.com/gin-gonic/gin"
 )
 
 var (
-	order  types.Order
-	review types.Review
+	order  model.Order
+	review model.Review
 )
 
 func (p *Controller) CreateOrderHandler(c *gin.Context) {

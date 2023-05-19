@@ -2,7 +2,6 @@ package model
 
 import (
 	"context"
-	"fmt"
 	"log"
 
 	"go.mongodb.org/mongo-driver/bson"
@@ -19,8 +18,7 @@ func (m *Model) CreateOrder(order Order) error {
 	opts := options.Update().SetUpsert(true)
 	if _, err := m.colOrder.UpdateOne(context.TODO(), filter, update, opts); err != nil {
 		log.Println(err)
-		fmt.Errorf("fail to create menu: %w", err)
+
 	}
 	return nil
 }
-
