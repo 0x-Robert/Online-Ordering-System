@@ -5,7 +5,11 @@ import (
 	ctl "online-ordering-system/controller"
 	"online-ordering-system/logger"
 
+	docs "online-ordering-system/docs"
+
 	"github.com/gin-gonic/gin"
+	swaggerfiles "github.com/swaggo/files"     // swagger embed files
+	ginSwagger "github.com/swaggo/gin-swagger" // gin-swagger middleware
 )
 
 type Router struct {
@@ -58,23 +62,21 @@ func liteAuth() gin.HandlerFunc {
 
 // 실제 라우팅
 func (p *Router) Idx() *gin.Engine {
-	//~
 
 	//gin.SetMode(gin.ReleaseMode)
 	gin.SetMode(gin.DebugMode)
 
 	r := gin.Default() //gin 선언
 
-	// r.Use(gin.Logger())   //gin 내부 log, logger 미들웨어 사용 선언
-	// r.Use(gin.Recovery()) //gin 내부 recover, recovery 미들웨어 사용 - 패닉복구
-
 	r.Use(logger.GinLogger())
 	r.Use(logger.GinRecovery(true))
 	r.Use(CORS()) //crossdomain 미들웨어 사용 등록
 	logger.Info("start server")
-	r.GET("/health", GetOK)
 
-	routerAdmin := r.Group("/admin/v01", liteAuth())
+	docs.SwaggerInfo.BasePath = "/v01"
+	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerfiles.Handler))
+
+	routerAdmin := r.Group("/v01/admin", liteAuth())
 	{
 		//어드민 레지스터
 		routerAdmin.POST("register", p.ct.AdminRegisterHandler)
@@ -90,7 +92,7 @@ func (p *Router) Idx() *gin.Engine {
 		routerAdmin.GET("/menu/status", p.ct.GetAllMenuHandler)
 
 	}
-	routerUser := r.Group("/v01", liteAuth())
+	routerUser := r.Group("/v01/user", liteAuth())
 	{
 		//매뉴 디테일
 		routerUser.GET("/menu/detail", p.ct.DetailMenuHandler)

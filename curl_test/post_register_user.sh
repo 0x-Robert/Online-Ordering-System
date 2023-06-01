@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-curl --location --request POST 'http://localhost:8080/admin/v01/register' \
+curl --location --request POST 'http://localhost:8080/v01/user/register' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "id":"yongari",

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-curl --location --request POST 'http://localhost:8080/v01/order' \
+curl --location --request POST 'http://localhost:8080/v01/user/order' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "menuname" :"육회사시미",

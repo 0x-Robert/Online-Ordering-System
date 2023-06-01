@@ -39,7 +39,6 @@ type Config struct {
 func GetConfig(fpath string) *Config {
 	c := new(Config)
 
-	fmt.Println("c", c)
 	if file, err := os.Open(fpath); err != nil {
 		panic(err)
 	} else {

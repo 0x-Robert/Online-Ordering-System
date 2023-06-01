@@ -23,16 +23,21 @@ var (
 	g errgroup.Group
 )
 
-// @BasePath /v1
-// swagger API 선언
-// func setupSwagger(r *gin.Engine) {
-// 	r.GET("/", func(c *gin.Context) {
-// 		c.Redirect(http.StatusFound, "/swagger/index.html")
-// 	})
+// @title Online Ordering System API
+// @version 1.0
+// @description This is a online ordering  server.
+// @termsOfService http://swagger.io/terms/
 
-// 	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
-// }
+// @contact.name API Support
+// @contact.url http://www.swagger.io/support
+// @contact.email support@swagger.io
 
+// @license.name Apache 2.0
+// @license.url http://www.apache.org/licenses/LICENSE-2.0.html
+
+// @host localhost:8080
+// @BasePath /
+// @schemes http
 func main() {
 
 	//model 모듈 선언
@@ -46,13 +51,6 @@ func main() {
 		var configFlag = flag.String("config", "./config/.config.toml", "toml file to use for configuration")
 		flag.Parse()
 		cf := conf.GetConfig(*configFlag)
-		//config := conf.GetConfig("./config/.config.toml")
-		//cf := conf.NewConfig(*configFlag)
-		// fmt.Println("config.Server.Port", config.Server.Port)
-		// fmt.Println("config.Server.Mode", config.Server.Mode)
-		// fmt.Println("config.DB[account][pass]", config.DB["account"]["pass"])
-		// fmt.Println("work", config.Work)
-		// fmt.Println("work", config.Work[0].Desc)
 
 		// 로그 초기화
 		if err := logger.InitLogger(cf); err != nil {

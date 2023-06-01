@@ -13,7 +13,7 @@
 # }'
 
 
-curl --location --request POST 'http://localhost:8080/admin/v01/menu/create' \
+curl --location --request POST 'http://localhost:8080/v01/admin/menu/create' \
 --header 'Content-Type: application/json' \
 --data-raw '{   
     "menuid" : 3,

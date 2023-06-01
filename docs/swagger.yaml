@@ -1,0 +1,411 @@
+basePath: /
+definitions:
+  model.Admin:
+    properties:
+      id:
+        type: string
+      password:
+        type: string
+    type: object
+  model.Menu:
+    properties:
+      admin:
+        description: 관리자 이름
+        type: string
+      create_time:
+        description: 생성시간
+        type: string
+      imageurl:
+        description: 이미지 url
+        type: string
+      menuid:
+        description: 메뉴 아이디, 추후 중복방지를 위해 둠
+        type: integer
+      name:
+        description: 메뉴이름
+        type: string
+      orders:
+        description: 추후 통계를 위해 개발 필요 오더스를 취합해서 평점 계산필요
+        items:
+          $ref: '#/definitions/model.Order'
+        type: array
+      price:
+        description: 메뉴가격
+        type: integer
+      quantity:
+        description: 총 개수
+        type: integer
+      recommendation:
+        description: 메뉴 추천/비추천
+        type: boolean
+      reviews:
+        items:
+          $ref: '#/definitions/model.Review'
+        type: array
+      score:
+        description: 점수
+        type: integer
+    type: object
+  model.Order:
+    properties:
+      address:
+        description: 주소
+        type: string
+      customer:
+        description: 고객
+        type: string
+      menuname:
+        description: 메뉴이름
+        type: string
+      orderid:
+        type: integer
+      paymentinformation:
+        description: 결제정보
+        type: string
+      phonenumber:
+        description: 번호
+        type: string
+      quantity:
+        description: 개수
+        type: integer
+      rating:
+        description: 평점
+        type: string
+      status:
+        description: order status
+        type: string
+    type: object
+  model.Review:
+    properties:
+      review_content:
+        description: 리뷰 콘텐츠
+        type: string
+      review_title:
+        description: 리뷰 제목
+        type: string
+      reviewid:
+        type: integer
+    type: object
+  model.User:
+    properties:
+      id:
+        type: string
+      password:
+        type: string
+    type: object
+host: localhost:8080
+info:
+  contact:
+    email: support@swagger.io
+    name: API Support
+    url: http://www.swagger.io/support
+  description: This is a online ordering  server.
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+  title: Online Ordering System API
+  version: "1.0"
+paths:
+  /v01/admin/login:
+    post:
+      consumes:
+      - application/json
+      description: 관리자가 로그인 하기 위한 함수
+      parameters:
+      - description: id
+        in: query
+        name: id
+        required: true
+        type: string
+      - description: password
+        in: query
+        name: password
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/model.Admin'
+            type: array
+      tags:
+      - Admin Login
+  /v01/admin/menu/create:
+    post:
+      consumes:
+      - application/json
+      description: 메뉴를 만드는 함수
+      parameters:
+      - description: menuid
+        in: query
+        name: menuid
+        required: true
+        type: string
+      - description: imageurl
+        in: query
+        name: imageurl
+        required: true
+        type: string
+      - description: name
+        in: query
+        name: name
+        required: true
+        type: string
+      - description: quantity
+        in: query
+        name: quantity
+        required: true
+        type: string
+      - description: price
+        in: query
+        name: price
+        required: true
+        type: string
+      - description: recommendation
+        in: query
+        name: recommendation
+        required: true
+        type: string
+      - description: admin
+        in: query
+        name: admin
+        required: true
+        type: string
+      - description: score
+        in: query
+        name: score
+        required: true
+        type: string
+      - description: review
+        in: query
+        name: review
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/model.Menu'
+            type: array
+      tags:
+      - Create Menu
+  /v01/admin/menu/delete:
+    post:
+      consumes:
+      - application/json
+      description: 메뉴를 삭제하는 함수
+      parameters:
+      - description: menuid
+        in: query
+        name: menuid
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/model.Menu'
+            type: array
+      tags:
+      - Delete Menu
+  /v01/admin/menu/recom:
+    post:
+      consumes:
+      - application/json
+      description: 특정 메뉴를 추천해주는 함수다.
+      parameters:
+      - description: recommendation
+        in: query
+        name: recommendation
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/model.Menu'
+            type: array
+      tags:
+      - Recommend Order
+  /v01/admin/menu/status:
+    get:
+      consumes:
+      - application/json
+      description: 메뉴를 전부 가져오는 함수
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/model.Menu'
+            type: array
+      tags:
+      - Get All Menu
+  /v01/admin/register:
+    post:
+      consumes:
+      - application/json
+      description: 관리자를 등록하기 위한 함수
+      parameters:
+      - description: id
+        in: query
+        name: id
+        required: true
+        type: string
+      - description: password
+        in: query
+        name: password
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/model.Admin'
+            type: array
+      tags:
+      - Admin Register
+  /v01/user/login:
+    post:
+      consumes:
+      - application/json
+      description: 로그인하는 함수
+      parameters:
+      - description: id
+        in: query
+        name: id
+        required: true
+        type: string
+      - description: password
+        in: query
+        name: password
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/model.User'
+            type: array
+      tags:
+      - Login User
+  /v01/user/menu/detail:
+    get:
+      consumes:
+      - application/json
+      description: 메뉴를 한개만 가져온다. 해당하는 메뉴만 가져온다.
+      parameters:
+      - description: menuid
+        in: query
+        name: menuid
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/model.Menu'
+            type: array
+      tags:
+      - Get  Menu Detail
+  /v01/user/order:
+    post:
+      consumes:
+      - application/json
+      description: 특정 메뉴를 주문한다. 주문데이터는 model.Order를 참고한다.
+      parameters:
+      - description: menuname
+        in: query
+        name: menuname
+        required: true
+        type: string
+      - description: customer
+        in: query
+        name: customer
+        required: true
+        type: string
+      - description: phonenumber
+        in: query
+        name: phonenumber
+        required: true
+        type: string
+      - description: address
+        in: query
+        name: address
+        required: true
+        type: string
+      - description: quantity
+        in: query
+        name: quantity
+        required: true
+        type: string
+      - description: paymentinformation
+        in: query
+        name: paymentinformation
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/model.Order'
+            type: array
+      tags:
+      - Crete Order
+  /v01/user/register:
+    post:
+      consumes:
+      - application/json
+      description: 유저를 등록하는 함수다.
+      parameters:
+      - description: id
+        in: query
+        name: id
+        required: true
+        type: string
+      - description: password
+        in: query
+        name: password
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/model.User'
+            type: array
+      tags:
+      - Register user
+schemes:
+- http
+swagger: "2.0"

@@ -12,7 +12,7 @@
 #     "recommendation":true ,
 #     "admin" : "yongari"
 # }'
-curl --location --request POST 'http://localhost:8080/admin/v01/menu/delete' \
+curl --location --request POST 'http://localhost:8080/admin/v01/admin/menu/delete' \
 --header 'Content-Type: application/json' \
 --data-raw '{   
     "menuid" : 3,
@@ -24,4 +24,10 @@ curl --location --request POST 'http://localhost:8080/admin/v01/menu/delete' \
     "admin" : "yongari", 
     "score" : 1, 
     "review" : "맛있는 육회 최고!"
+}'
+
+curl --location --request POST 'http://localhost:8080/admin/v01/admin/menu/delete' \
+--header 'Content-Type: application/json' \
+--data-raw '{   
+    "menuid" : 3,
 }'

@@ -10,8 +10,6 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
-
-
 func (m *Model) RegisterAdmin(admin Admin) error {
 	filter := bson.D{{Key: "id", Value: admin.ID}}
 	update := bson.D{{Key: "$set", Value: admin}}
@@ -32,6 +30,7 @@ func (m *Model) LoginAdmin(admin Admin) bool {
 	if err != nil {
 		if err == mongo.ErrNoDocuments {
 			log.Println(err)
+			return false
 		}
 	}
 	return true
